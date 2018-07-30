@@ -22,7 +22,7 @@ module Spree
       ahv = AdHocVariantExclusion.where(product: params[:variant_id])
       ahv.each do |v|
          values = []
-         v.ExcludedAdHocOptionValues.each do |r|
+         v.excluded_ad_hoc_option_values.each do |r|
             values.push(r[:ad_hoc_option_value])
          end
          if values - params[:ad_hoc_option_values].emtpy?
