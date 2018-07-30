@@ -5,9 +5,7 @@ module Spree
 
     def create
       return unless params["ad_hoc_option_type"]
-      ave = AdHocVariantExclusion.new
-      ave.product = @product
-      ave.save
+      ave = AdHocVariantExclusion.create(product: @product)
       params["ad_hoc_option_type"].each_pair do |otid, ovid|
         next if ovid.empty?
         eov = ExcludedAdHocOptionValue.create(ad_hoc_variant_exclusion: ave.id, ad_hoc_option_value_id: ovid)
