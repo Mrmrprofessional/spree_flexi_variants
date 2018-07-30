@@ -25,7 +25,7 @@ module Spree
          v.excluded_ad_hoc_option_values.each do |r|
             values.push(r[:ad_hoc_option_value])
          end
-         if values - params[:ad_hoc_option_values].empty?
+         if (values - params[:ad_hoc_option_values]).empty?
            flash[:danger] = "The chosen options are incompatible with your current configuration."
            redirect_to :back
          end
