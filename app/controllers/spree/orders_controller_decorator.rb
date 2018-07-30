@@ -6,7 +6,7 @@ module Spree
 
     before_action :set_option_params_values, only: [:populate]
     before_action :check_variant_exclusions, only: [:populate]
-    
+
 
 
     private
@@ -17,12 +17,12 @@ module Spree
       params[:options][:product_customizations] = product_customizations
       params[:options][:customization_price] = params[:customization_price] if params[:customization_price]
     end
-    
+
     def check_variant_exclusions
       ahv = AdHocVariantExclusion.where(product: params[:variant_id])
-      ahv.each |v| do
+      ahv.each do |v|
          values = []
-         v.ExcludedAdHocOptionValues.each |r| do
+         v.ExcludedAdHocOptionValues.each do |r|
             values.push(r[:ad_hoc_option_value])
          end
          if values - params[:ad_hoc_option_values].emtpy?
