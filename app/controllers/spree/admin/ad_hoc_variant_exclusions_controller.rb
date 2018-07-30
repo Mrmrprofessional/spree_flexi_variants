@@ -8,7 +8,7 @@ module Spree
       @ave = AdHocVariantExclusion.create(product: @product)
       params["ad_hoc_option_type"].each_pair do |otid, ovid|
         next if ovid.empty?
-        eov = ExcludedAdHocOptionValue.create(ad_hoc_variant_exclusion: @ave.id, ad_hoc_option_value_id: ovid)
+        eov = ExcludedAdHocOptionValue.create(ad_hoc_variant_exclusion: @ave, ad_hoc_option_value_id: ovid)
       end
       redirect_to admin_product_ad_hoc_variant_exclusions_path(@product)
     end
