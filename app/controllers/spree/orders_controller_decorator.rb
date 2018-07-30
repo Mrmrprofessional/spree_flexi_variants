@@ -5,6 +5,9 @@ module Spree
     include AdHocUtils
 
     before_action :set_option_params_values, only: [:populate]
+    before_action :check_variant_exclusions, only: [:populate]
+    
+
 
     private
 
@@ -14,6 +17,19 @@ module Spree
       params[:options][:product_customizations] = product_customizations
       params[:options][:customization_price] = params[:customization_price] if params[:customization_price]
     end
-
+    
+    def check_variant_exclusions
+      ahv = AdHocVariantExclusion.where(product: params[:variant_id])
+      ahv.each |v| do
+         values = []
+         v.ExcludedAdHocOptionValues.each |r| do
+            values.push(r[:ad_hoc_option_value])
+         end
+         if values - params[:ad_hoc_option_values].emtpy?
+           flash[:danger] = "The chosen options are incompatible with your current configuration."
+           redirect_to :back
+         end
+      end
+    end
   end
 end
