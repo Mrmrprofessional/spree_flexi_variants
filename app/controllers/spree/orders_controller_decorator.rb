@@ -25,8 +25,12 @@ module Spree
          v.excluded_ad_hoc_option_values.each do |r|
             @values.push(r.ad_hoc_option_value.id)
          end
-        puts ad_hoc_option_value_ids.to_set.superset?(@values.to_set)
-         if ad_hoc_option_value_ids.to_set.superset?(@values.to_set)
+        puts  ad_hoc_option_value_ids
+        pp  ad_hoc_option_value_ids
+        puts  @values
+        pp  @values
+        puts (@values - ad_hoc_option_value_ids)
+         if (@values - ad_hoc_option_value_ids).true
            flash[:danger] = "The chosen options are incompatible with your current configuration."
            redirect_to :back
          end
