@@ -21,7 +21,7 @@ module Spree
     def check_variant_exclusions
       ahv = AdHocVariantExclusion.where(product: params[:variant_id])
       puts "AHV:"
-      puts avh
+      puts ahv
       ahv.each do |v|
          @values = []
          v.excluded_ad_hoc_option_values.each do |r|
