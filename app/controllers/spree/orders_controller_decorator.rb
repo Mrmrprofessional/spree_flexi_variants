@@ -25,14 +25,9 @@ module Spree
          v.excluded_ad_hoc_option_values.each do |r|
             @values.push(r.ad_hoc_option_value.id.to_s)
          end
-        puts  ad_hoc_option_value_ids
-        pp  ad_hoc_option_value_ids
-        puts  @values
-        pp  @values
-        puts (@values - ad_hoc_option_value_ids)
          if (@values - ad_hoc_option_value_ids).empty?
            flash[:danger] = "The chosen options are incompatible with your current configuration."
-           redirect_to :back
+           redirect_back_or_default(spree.root_path)
          end
       end
     end
