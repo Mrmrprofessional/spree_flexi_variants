@@ -30,10 +30,10 @@ module Spree
             @values.push(r[:ad_hoc_option_value])
          end
         puts "DB Values:"
-        puts values
+        puts @values
         puts "Params:"
         puts params[:ad_hoc_option_values].values
-         if (values - params[:ad_hoc_option_values].values).empty?
+         if (@values - params[:ad_hoc_option_values].values).empty?
            flash[:danger] = "The chosen options are incompatible with your current configuration."
            redirect_to :back
          end
