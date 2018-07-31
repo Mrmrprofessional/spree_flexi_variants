@@ -20,12 +20,18 @@ module Spree
 
     def check_variant_exclusions
       ahv = AdHocVariantExclusion.where(product: params[:variant_id])
+      puts "AHV:"
+      puts avh
       ahv.each do |v|
-         values = []
+         @values = []
          v.excluded_ad_hoc_option_values.each do |r|
-            values.push(r[:ad_hoc_option_value])
+            puts "AHV Values:"
+            puts r[:ad_hoc_option_value]
+            @values.push(r[:ad_hoc_option_value])
          end
+        puts "DB Values:"
         puts values
+        puts "Params:"
         puts params[:ad_hoc_option_values].values
          if (values - params[:ad_hoc_option_values].values).empty?
            flash[:danger] = "The chosen options are incompatible with your current configuration."
