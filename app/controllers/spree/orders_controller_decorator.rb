@@ -23,7 +23,7 @@ module Spree
       ahv.each do |v|
          @values = []
          v.excluded_ad_hoc_option_values.each do |r|
-            @values.push(r.ad_hoc_option_value.id)
+            @values.push(r.ad_hoc_option_value.id.to_s)
          end
         puts  ad_hoc_option_value_ids
         pp  ad_hoc_option_value_ids
