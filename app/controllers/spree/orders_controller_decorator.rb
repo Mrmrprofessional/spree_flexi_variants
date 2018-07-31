@@ -35,7 +35,7 @@ module Spree
         puts params[:ad_hoc_option_values].values
         puts "intersection?"
         puts (@values & params[:ad_hoc_option_values].values)
-         if (@values & params[:ad_hoc_option_values].values) == @values
+         if params[:ad_hoc_option_values].values.to_set.superset?(@values.to_set)
            flash[:danger] = "The chosen options are incompatible with your current configuration."
            redirect_to :back
          end
