@@ -33,6 +33,9 @@ module Spree
         puts @values
         puts "Params:"
         puts params[:ad_hoc_option_values].values
+        puts "empty?"
+        puts (@values - params[:ad_hoc_option_values].values).empty?
+        puts (@values - params[:ad_hoc_option_values].values)
          if (@values - params[:ad_hoc_option_values].values).empty?
            flash[:danger] = "The chosen options are incompatible with your current configuration."
            redirect_to :back
