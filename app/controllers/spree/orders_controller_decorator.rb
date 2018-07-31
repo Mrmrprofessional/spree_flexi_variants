@@ -30,7 +30,7 @@ module Spree
         puts  @values
         pp  @values
         puts (@values - ad_hoc_option_value_ids)
-         if (@values - ad_hoc_option_value_ids).true
+         if (@values - ad_hoc_option_value_ids).empty?
            flash[:danger] = "The chosen options are incompatible with your current configuration."
            redirect_to :back
          end
