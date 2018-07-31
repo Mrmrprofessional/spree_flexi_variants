@@ -26,8 +26,8 @@ module Spree
          @values = []
          v.excluded_ad_hoc_option_values.each do |r|
             puts "AHV Values:"
-            puts r.ad_hoc_option_value
-            @values.push(r.ad_hoc_option_value)
+            puts r.ad_hoc_option_value.id
+            @values.push(r.ad_hoc_option_value.id)
          end
         puts "DB Values:"
         puts @values
