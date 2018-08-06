@@ -40,5 +40,10 @@ module Spree
     def cost_money
       Spree::Money.new(cost_price, currency: currency)
     end
+    
+    def update_price
+      # removed VAT Uncomment if needed. Will break flexi variants
+      # self.price = variant.price_including_vat_for(tax_zone: tax_zone)
+    end
   end
 end
